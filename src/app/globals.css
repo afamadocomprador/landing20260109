@@ -2,7 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: white;
-  color: #033B37; /* El color oscuro de DKV por defecto */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --radius: 0.625rem;
+    /* Colores DKV como variables CSS para usarlos fácilmente */
+    --dkv-digital: #849700;
+    --dkv-hover: #43752B;
+    --dkv-dark: #033B37;
+    --dkv-grey-bg: #F7F7F7;
+    --dkv-red: #ED0039;
+  }
 }
+
+@layer base {
+  * {
+    border-color: #e5e7eb;
+  }
+  body {
+    background-color: white;
+    color: #033B37;
+    font-family: 'system-ui', sans-serif;
+  }
+}
+
+/* Clases de utilidad personalizadas para que no pierdas tus estilos */
+.bg-dkv-digital { background-color: var(--dkv-digital); }
+.text-dkv-digital { color: var(--dkv-digital); }
+.bg-dkv-dark { background-color: var(--dkv-dark); }
+.border-dkv-digital { border-color: var(--dkv-digital); }
