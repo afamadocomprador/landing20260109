@@ -74,7 +74,7 @@ export function PremiumCalculator({ initialPlan }: PremiumCalculatorProps) {
       ...values,
       plan: selectedPlan,
       frecuencia_pago: selectedResult.frequency,
-      adultos,
+      adults,
       menores_14: children,
       total_recibo: selectedResult.total,
     };
