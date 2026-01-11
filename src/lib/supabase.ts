@@ -26,3 +26,4 @@ export async function saveLead(data: LeadData) {
   if (error) throw error;
   return result;
 }
+ 
