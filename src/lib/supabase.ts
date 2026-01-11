@@ -5,25 +5,29 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// Definimos la estructura de datos que Jules espera para los Leads
+// He ampliado esta interfaz para que coincida exactamente con lo que envía tu calculadora
 export interface LeadData {
   plan: string;
-  frequency: string;
-  total_premium: number;
-  insured_count: number;
-  insured_ages: number[];
+  frecuencia_pago: string; // Antes era frequency
+  adultos: number;
+  menores_14: number;
+  total_recibo: number;
+  insured_count?: number;
+  insured_ages?: number[];
   contact_email?: string;
   contact_phone?: string;
+  [key: string]: any; // Esta línea permite que si Jules envía algo más, no dé error
 }
 
-// Creamos la función saveLead que falta
 export async function saveLead(data: LeadData) {
   const { data: result, error } = await supabase
-    .from('leads') // Asegúrate de tener una tabla llamada 'leads' en Supabase
+    .from('leads')
     .insert([data])
     .select();
 
-  if (error) throw error;
+  if (error) {
+    console.error("Error guardando en Supabase:", error);
+    throw error;
+  }
   return result;
 }
- 
